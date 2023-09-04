@@ -54,7 +54,7 @@ public class HotelManagementRepoaitory {
             totalRoomAvilable -= booking.getNoOfRooms();
             hotel.setAvailableRooms(totalRoomAvilable);
             hotelMap.put(hotelName, hotel);
-            String bookingId = UUID.randomUUID() + "";
+            String bookingId = String.valueOf(UUID.randomUUID());
             System.out.println(bookingId + "bookingId");
             int amountTobePaid = hotel.getPricePerNight() * booking.getNoOfRooms();
             bookingMap.put(bookingId, booking);
@@ -77,8 +77,8 @@ public class HotelManagementRepoaitory {
         if (!hotelMap.containsKey(hotelName))return null;
         Hotel hotel = hotelMap.get(hotelName);
         List<Facility> facilities = hotel.getFacilities();
-        for (int i = 0; i < newFacilities.size(); i++) {
-            if (!facilities.contains(newFacilities.get(i)))facilities.add(newFacilities.get(i));
+        for (Facility newFacility : newFacilities) {
+            if (!facilities.contains(newFacility)) facilities.add(newFacility);
         }
         hotel.setFacilities(facilities);
         hotelMap.put(hotelName, hotel);
